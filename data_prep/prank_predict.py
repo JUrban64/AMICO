@@ -95,7 +95,7 @@ def run_p2rank_batch(structures_dir, prank_exec="p2rank_2.5.1/prank", threads=6)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dir", default="../Binding_Sites", help="Directory with PDB files")
+    parser.add_argument("--dir", default="../structures", help="Directory with PDB files")
     parser.add_argument("--prank", default="p2rank_2.5.1/prank", help="Path to P2Rank executable")
     parser.add_argument("--threads", type=int, default=6)
     

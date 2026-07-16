@@ -23,7 +23,9 @@ def load_data_from_tensors(data_path, mode='residues'):
     labels_dict = {}
     
     for item in tqdm(raw_data, desc="Zpracování bagů"):
-        pid = item['protein_id']
+        raw_pid = item['protein_id']
+        pid = raw_pid.split('_pocket_')[0].replace('.pdb', '').replace('_prank_output', '')
+        
         feat = item['features'] # Očekává se [N, 1280]
         label = item['label']
         
@@ -73,7 +75,7 @@ def load_split_ids(base_dir):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data-path', default='../data_prep/esm_dataset.pt')
+    parser.add_argument('--data-path', default='data_prep/esm_dataset.pt')
     parser.add_argument('--mode', choices=['pockets', 'residues'], default='residues')
     args = parser.parse_args()
     bags = load_data_from_tensors(args.data_path, mode=args.mode)

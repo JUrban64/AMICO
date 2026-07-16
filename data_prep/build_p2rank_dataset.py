@@ -131,7 +131,7 @@ def process_p2rank_pockets(pockets_dir, output_json):
 
 
 if __name__ == "__main__":
-    pockets_dir = "./structures"
+    pockets_dir = "../../EquiPocket-MIL-/structures"
     output_json = "p2rank_pockets_dataset.json"
     
     if not os.path.exists(pockets_dir):

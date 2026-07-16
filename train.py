@@ -5,7 +5,7 @@ import numpy as np
 import os
 import argparse
 from sklearn.metrics import accuracy_score, f1_score, classification_report
-from dataset import load_data_from_pyg_batches, load_split_ids
+from dataset import load_data_from_tensors, load_split_ids
 from model import AttentionMIL_ESM
 
 class EarlyStopping:
@@ -35,7 +35,7 @@ def train_and_evaluate(args):
     bags = load_data_from_tensors(args.data_path, mode=args.mode)
     
     # 2. Split data
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     train_ids, val_ids, test_ids = load_split_ids(base_dir)
     
     train_bags, val_bags, test_bags = [], [], []
@@ -190,7 +190,7 @@ def train_and_evaluate(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data-path', default='../data_prep/esm_dataset.pt')
+    parser.add_argument('--data-path', default='data_prep/esm_dataset.pt')
     parser.add_argument('--mode', choices=['pockets', 'residues'], default='residues', 
                         help='Mód dat: pockets (1 vektor per kapsa) nebo residues (1 vektor per aminokyselina)')
     parser.add_argument('--epochs', type=int, default=100)
